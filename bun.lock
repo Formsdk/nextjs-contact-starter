@@ -4,7 +4,7 @@
   "workspaces": {
     "": {
       "dependencies": {
-        "@formsdk/sdk": "^1.0.5",
+        "@formsdk/sdk": "^1.0.6",
         "@neondatabase/serverless": "^0.10.0",
         "@tailwindcss/postcss": "4.0.0-alpha.13",
         "@types/node": "20.11.17",
@@ -80,7 +80,7 @@
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.19.12", "", { "os": "win32", "cpu": "x64" }, "sha512-T1QyPSDCyMXaO3pzBkF96E8xMkiRYbUEZADd29SyPGabqxMViNoii+NcK7eWJAEoU6RZyEm5lVSIjTmcdoB9HA=="],
 
-    "@formsdk/sdk": ["@formsdk/sdk@1.0.5", "", { "peerDependencies": { "@libsql/client": "*", "@neondatabase/serverless": "*", "@prisma/client": "*", "@supabase/supabase-js": "*", "better-auth": "*", "drizzle-orm": "*", "postgres": "*", "ws": "*" }, "optionalPeers": ["@libsql/client", "@neondatabase/serverless", "@prisma/client", "@supabase/supabase-js", "better-auth", "drizzle-orm", "postgres", "ws"] }, "sha512-WkvFZFQkP3fN2/q8SMVP9/wgOPpen8vVvYcAzz51z6R8QtugjprRk7ocDRGCphicirXy/vl8X5Epd31FEuTdgw=="],
+    "@formsdk/sdk": ["@formsdk/sdk@1.0.6", "", {}, "sha512-WEBGv7k+WRpqnjnV3MMt0V1ceWtiuMWS0DPwqYhQdeFk3AT/V+qxLy9Dap6FDTKOiULoQwD1VY47gnd5YVb+oA=="],
 
     "@img/colour": ["@img/colour@1.1.0", "", {}, "sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ=="],
 
