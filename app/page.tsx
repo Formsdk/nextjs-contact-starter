@@ -1,40 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "@formsdk/sdk";
 
 export default function ContactPage() {
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const { status, errors, submit, reset } = useForm({
+    action: "/api/contact",
+    onSuccess: () => {
+      alert("Message sent!");
+      reset();
+    },
+  });
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("idle");
-    setErrors({});
-
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const body = Object.fromEntries(data);
-
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: { "Content-Type": "application/json" },
-    });
-
-    const result = await res.json();
-    if (result.success) {
-      setStatus("success");
-      form.reset();
-    } else {
-      setStatus("error");
-      if (result.errors) {
-        const errs: Record<string, string> = {};
-        result.errors.forEach((err: { field: string; message: string }) => {
-          errs[err.field] = err.message;
-        });
-        setErrors(errs);
-      }
-    }
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+    await submit(data);
   }
 
   return (
