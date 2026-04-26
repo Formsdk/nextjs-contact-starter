@@ -1,21 +1,20 @@
 "use client";
 
-import { useForm } from "@formsdk/sdk";
+import { useForm } from "@formsdk/react";
 
 export default function ContactPage() {
-  const { status, errors, submit, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, status },
+    reset,
+  } = useForm({
     action: "/api/contact",
     onSuccess: () => {
       alert("Message sent!");
       reset();
     },
   });
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget));
-    await submit(data);
-  }
 
   return (
     <div className="min-h-screen text-[#5D4D78] flex flex-col items-center px-4 py-16 md:py-24">
@@ -29,8 +28,8 @@ export default function ContactPage() {
           <div>
             <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
             <input
+              {...register("name")}
               type="text"
-              name="name"
               id="name"
               required
               minLength={2}
@@ -42,8 +41,8 @@ export default function ContactPage() {
           <div>
             <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
             <input
+              {...register("email")}
               type="email"
-              name="email"
               id="email"
               required
               className="w-full px-3 py-2 rounded-lg border border-[#CFC9DA] bg-white text-[#5D4D78] focus:outline-none focus:ring-2 focus:ring-primary"
@@ -54,7 +53,7 @@ export default function ContactPage() {
           <div>
             <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
             <textarea
-              name="message"
+              {...register("message")}
               id="message"
               required
               minLength={10}
@@ -66,9 +65,10 @@ export default function ContactPage() {
 
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-[#4E3F68] text-white rounded-lg font-medium hover:bg-[#4E3F68]/90 transition-colors"
+            disabled={status === "loading"}
+            className="w-full py-2 px-4 bg-[#4E3F68] text-white rounded-lg font-medium hover:bg-[#4E3F68]/90 transition-colors disabled:opacity-50"
           >
-            Send Message
+            {status === "loading" ? "Sending..." : "Send Message"}
           </button>
         </form>
 

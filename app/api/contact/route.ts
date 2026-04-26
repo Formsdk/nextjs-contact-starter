@@ -1,4 +1,4 @@
-import { handleRequest } from "@formsdk/sdk";
+import { handleRequest } from "@formsdk/core";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
