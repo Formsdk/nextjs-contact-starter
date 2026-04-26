@@ -1,36 +1,39 @@
 # Next.js x FormsDK Starter
 
-A minimal contact form starter using Next.js and FormsDK with NeonDB.
+A minimal contact form starter using Next.js and FormsDK with PostgreSQL.
+
+## Supported Providers
+
+FormsDK works with any PostgreSQL database. Tested providers:
+
+- [NeonDB](https://neon.tech)
+- [Supabase](https://supabase.com)
+- [Render](https://render.com)
+- [Fly.io](https://fly.io)
+- [Zerops](https://zerops.io)
 
 ## Setup
 
-### 1. Create a NeonDB account
+### 1. Create a database
 
-Go to [neon.tech](https://neon.tech) and sign up. Create a new project.
+Sign up at any of the providers above and create a PostgreSQL database.
 
 ### 2. Get your database URL
 
-From your Neon dashboard, copy the connection string.
+Copy the connection string from your provider's dashboard.
 
 ### 3. Configure environment variables
 
-Create a `.env.local` file in the root of the project:
+Create a `.env` file in the root of the project:
 
 ```
-DATABASE_URL=postgres://user:password@ep-xxx.region.aws.neon.tech/neondb?sslmode=require
+DATABASE_URL=postgres://user:password@host/database?sslmode=require
 ```
 
-### 4. Create the submissions table
+### 4. Push the schema
 
-Run this in the Neon SQL editor:
-
-```sql
-CREATE TABLE form_submissions (
-  id SERIAL PRIMARY KEY,
-  name TEXT,
-  email TEXT,
-  message TEXT
-);
+```bash
+bun db:push
 ```
 
 ### 5. Run the dev server
@@ -46,5 +49,5 @@ Open [http://localhost:3000](http://localhost:3000).
 
 - Contact form with name, email, and message fields
 - Form validation via @formsdk/sdk
-- NeonDB integration for data persistence
-- Serverless Postgres via Neon
+- PostgreSQL integration for data persistence
+- Works with any PostgreSQL provider
