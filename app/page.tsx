@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "@formsdk/react";
+import "./styles.css";
 
 export default function ContactPage() {
   const {
@@ -17,70 +18,70 @@ export default function ContactPage() {
   });
 
   return (
-    <div className="min-h-screen text-[#5D4D78] flex flex-col items-center px-4 py-16 md:py-24">
-      <div className="w-full max-w-md space-y-6">
-        <div className="text-center">
-          <h1 className="text-3xl text-[#4E3F68] font-semibold tracking-tight mb-1">Contact Us</h1>
-          <p className="text-sm text-muted-foreground">Send us a message</p>
+    <div className="contact-page">
+      <div className="contact-container">
+        <div className="contact-header">
+          <h1 className="contact-title">Contact Us</h1>
+          <p className="contact-subtitle">Send us a message</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
+        <form onSubmit={handleSubmit} className="contact-form">
+          <div className="form-group">
+            <label htmlFor="name" className="form-label">Name</label>
             <input
               {...register("name")}
               type="text"
               id="name"
               required
               minLength={2}
-              className="w-full px-3 py-2 rounded-lg border border-[#CFC9DA] bg-white text-[#5D4D78] focus:outline-none focus:ring-2 focus:ring-primary"
+              className="form-input"
             />
-            {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
+            {errors.name && <p className="form-error">{errors.name}</p>}
           </div>
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">Email</label>
             <input
               {...register("email")}
               type="email"
               id="email"
               required
-              className="w-full px-3 py-2 rounded-lg border border-[#CFC9DA] bg-white text-[#5D4D78] focus:outline-none focus:ring-2 focus:ring-primary"
+              className="form-input"
             />
-            {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
+            {errors.email && <p className="form-error">{errors.email}</p>}
           </div>
 
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
+          <div className="form-group">
+            <label htmlFor="message" className="form-label">Message</label>
             <textarea
               {...register("message")}
               id="message"
               required
               minLength={10}
               rows={4}
-              className="w-full px-3 py-2 rounded-lg border border-[#CFC9DA] bg-white text-[#5D4D78] focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+              className="form-input"
             />
-            {errors.message && <p className="text-xs text-red-500 mt-1">{errors.message}</p>}
+            {errors.message && <p className="form-error">{errors.message}</p>}
           </div>
 
           <button
             type="submit"
             disabled={status === "loading"}
-            className="w-full py-2 px-4 bg-[#4E3F68] text-white rounded-lg font-medium hover:bg-[#4E3F68]/90 transition-colors disabled:opacity-50"
+            className="form-button"
           >
             {status === "loading" ? "Sending..." : "Send Message"}
           </button>
         </form>
 
         {status === "success" && (
-          <div className="px-4 py-3 rounded-lg border border-green-200 bg-green-50">
-            <p className="text-sm text-green-600">Message sent successfully!</p>
+          <div className="form-success">
+            <p className="form-success-text">Message sent successfully!</p>
           </div>
         )}
 
         {status === "error" && !Object.keys(errors).length && (
-          <div className="px-4 py-3 rounded-lg border border-red-200 bg-red-50">
-            <p className="text-sm text-red-600">Something went wrong. Please try again.</p>
+          <div className="form-error-global">
+            <p className="form-error-global-text">Something went wrong. Please try again.</p>
           </div>
         )}
       </div>
