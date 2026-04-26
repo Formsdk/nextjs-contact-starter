@@ -9,7 +9,6 @@
     "db:push": "drizzle-kit push"
   },
   "dependencies": {
-    "@formsdk/core": "^1.0.2",
     "@formsdk/react": "^1.0.2",
     "@tailwindcss/postcss": "4.0.0-alpha.13",
     "@types/node": "22.0.0",

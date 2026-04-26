@@ -1,7 +1,6 @@
 "use client";
 
 import { useForm } from "@formsdk/react";
-import "./styles.css";
 
 export default function ContactPage() {
   const {

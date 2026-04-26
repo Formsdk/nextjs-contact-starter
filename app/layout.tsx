@@ -1,7 +1,6 @@
 import "./global.css"
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
@@ -14,7 +13,7 @@ const cx = (...classes: (string | undefined | false)[]) =>
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cx(GeistSans.variable, GeistMono.variable)}>
+    <html lang="en" className={cx(GeistSans.variable)}>
       <Analytics />
       <body className="antialiased min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
         {children}
